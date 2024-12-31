@@ -43,6 +43,7 @@ public class Main {
 
         boolean exit = false;
         L1:while (!exit){
+            //Main menu options(L1)
             System.out.println("Enter the main option");
             System.out.println("1. Need to create a new item");
             System.out.println("2. Need to create a new User");
@@ -58,7 +59,7 @@ public class Main {
                 System.out.println(e.getMessage());
                 continue;
             }
-
+            // Sub menu options for Main menu option 01(L2)
             if(mainOptionStr == 1){
                 System.out.println("Which item do you need to create ?");
                 System.out.println("1. Book");
@@ -71,6 +72,7 @@ public class Main {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                //(L3) sub menu option
                 if(createItemTypeStr == 1){
                     System.out.println("Please enter the book name you want to create");
                     String bookNameStr = new BufferedReader(new InputStreamReader(System.in)).readLine();
@@ -87,7 +89,20 @@ public class Main {
                     LibraryItem createBook = new Book(bookNameStr,bookAuthorStr,bookSerialNumberStr);
                     library.addItem(createBook);
                 }else if(createItemTypeStr == 2){
-                    //please implement adding magazine section
+                    System.out.println("Please enter the magazine name you want to create");
+                    String magazineNameStr = new BufferedReader(new InputStreamReader(System.in)).readLine();
+                    System.out.println("Please enter the magazine author you want to create");
+                    String magazineAuthorStr = new BufferedReader(new InputStreamReader(System.in)).readLine();
+                    System.out.println("Please enter the magazine serial number you want to create");
+                    String magazineSerialNumberStr = new BufferedReader(new InputStreamReader(System.in)).readLine();
+                    for(LibraryItem li:library.getLibraryItems()){
+                        if(Objects.equals(li.getSerialNumber(),magazineSerialNumberStr)){
+                            System.out.println("This serial number is already entered !");
+                            continue L1;
+                        }
+                    }
+                    LibraryItem createMagazine = new Magazine(magazineNameStr,magazineAuthorStr,magazineSerialNumberStr);
+                    library.addItem(createMagazine);
                 }
 
             } else if (mainOptionStr == 5) {
