@@ -1,6 +1,9 @@
 package com.librarymanagementsystem;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
 
     public User(String name) {
@@ -11,3 +14,4 @@ public class User {
         return name;
     }
 }
+
